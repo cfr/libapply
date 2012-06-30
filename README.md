@@ -20,3 +20,7 @@ Only x86-64 is supported at the moment.
 Hacking
 -------
 Run the unit tests by doing `make test`.
+
+Related Links
+-------------
+The [Hacker News discussion](http://news.ycombinator.com/item?id=4180537).
