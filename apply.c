@@ -38,8 +38,8 @@ static void ccall(
 		void *result,
 		const enum type_t retval, /* Return type */
 		const void *func, /* Function to call */
-		const struct arg_t *args, /* Arguments */
-		size_t size)
+		const arg_t *args, /* Arguments */
+		const size_t size)
 {
 	/* return values */
 	int int_result;
