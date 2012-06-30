@@ -18,7 +18,7 @@ float verify10f(
 		float f1, float f2, float f3, float f4, float f5,
 		float f6, float f7, float f8, float f9, float fa)
 {
-	if (f1 != fa || f2 != f9 || f3 != f8 || f4 != f7 || f5 != f6 )
+	if (f1 != fa || f2 != f9 || f3 != f8 || f4 != f7 || f5 != f6)
 		return 0.f;
 	else
 		return 42.f;
@@ -62,9 +62,9 @@ int test_sum_of_ints(void)
 
 	ret = applyi(sumi, args, 3);
 	if (111 == ret)
-		printf("ok 1 test_sum_of_ints()\n");
+		printf("ok\ttest_sum_of_ints()\n");
 	else {
-		printf("error got %d instead of 111\n", ret);
+		printf("fail\tgot %d instead of 111\n", ret);
 		err = 1;
 	}
 
@@ -86,9 +86,9 @@ int test_sum_of_floats(void)
 
 	ret = applyf(sum5f, args, 5);
 	if (11111.f == ret)
-		printf("ok 2 test_sum_of_floats()\n");
+		printf("ok\ttest_sum_of_floats()\n");
 	else {
-		printf("error got %f instead of 0.11111\n", ret);
+		printf("fail\tgot %f instead of 0.11111\n", ret);
 		err = 1;
 	}
 
@@ -115,9 +115,9 @@ int test_verify_many_floats(void)
 
 	ret = applyf(verify10f, args, 10);
 	if (42.f == ret)
-		printf("ok 3 test_verify_many_floats()\n");
+		printf("ok\ttest_verify_many_floats()\n");
 	else {
-		printf("error got %f instead of 0.11111\n", ret);
+		printf("fail\tgot %f instead of 42.f\n", ret);
 		err = 1;
 	}
 
@@ -166,9 +166,9 @@ int test_mixed_on_the_stack(void)
 
 	ret = applyi(sum_mixed_on_the_stack, args, 32);
 	if (16 == ret)
-		printf("ok 4 test_mixed_on_the_stack()\n");
+		printf("ok\ttest_mixed_on_the_stack()\n");
 	else {
-		printf("error got %d instead of 16\n", ret);
+		printf("fail\tgot %d instead of 16\n", ret);
 		err = 1;
 	}
 
