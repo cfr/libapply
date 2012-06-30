@@ -55,10 +55,10 @@ int test_sum_of_ints(void)
 {
 	int ret;
 	int err = 0;
-	struct arg_t args[] = {
-		{ T_INT, (union value_t)1 },
-		{ T_INT, (union value_t)10 },
-		{ T_INT, (union value_t)100 }
+	arg_t args[] = {
+		{ T_INT, (value_t)1 },
+		{ T_INT, (value_t)10 },
+		{ T_INT, (value_t)100 }
 	};
 
 	ret = applyi(sumi, args, 3);
@@ -77,12 +77,12 @@ int test_sum_of_floats(void)
 {
 	float ret;
 	int err = 0;
-	struct arg_t args[] = {
-		{ T_FLOAT, (union value_t)1.0f },
-		{ T_FLOAT, (union value_t)10.f },
-		{ T_FLOAT, (union value_t)100.f },
-		{ T_FLOAT, (union value_t)1000.f },
-		{ T_FLOAT, (union value_t)10000.f }
+	arg_t args[] = {
+		{ T_FLOAT, (value_t)1.0f },
+		{ T_FLOAT, (value_t)10.f },
+		{ T_FLOAT, (value_t)100.f },
+		{ T_FLOAT, (value_t)1000.f },
+		{ T_FLOAT, (value_t)10000.f }
 	};
 
 	ret = applyf(sum5f, args, 5);
@@ -101,18 +101,18 @@ int test_verify_many_floats(void)
 {
 	float ret;
 	int err = 0;
-	struct arg_t args[] = {
-		{ T_FLOAT, (union value_t)42.0f },
-		{ T_FLOAT, (union value_t)1.0f },
-		{ T_FLOAT, (union value_t)10.f },
-		{ T_FLOAT, (union value_t)100.f },
-		{ T_FLOAT, (union value_t)1000.f },
-		{ T_FLOAT, (union value_t)10000.f },
-		{ T_FLOAT, (union value_t)10000.f },
-		{ T_FLOAT, (union value_t)1000.f },
-		{ T_FLOAT, (union value_t)100.f },
-		{ T_FLOAT, (union value_t)10.f },
-		{ T_FLOAT, (union value_t)1.0f }
+	arg_t args[] = {
+		{ T_FLOAT, (value_t)42.0f },
+		{ T_FLOAT, (value_t)1.0f },
+		{ T_FLOAT, (value_t)10.f },
+		{ T_FLOAT, (value_t)100.f },
+		{ T_FLOAT, (value_t)1000.f },
+		{ T_FLOAT, (value_t)10000.f },
+		{ T_FLOAT, (value_t)10000.f },
+		{ T_FLOAT, (value_t)1000.f },
+		{ T_FLOAT, (value_t)100.f },
+		{ T_FLOAT, (value_t)10.f },
+		{ T_FLOAT, (value_t)1.0f }
 	};
 
 	ret = applyf(verify10f, args, 11);
@@ -131,39 +131,39 @@ int test_mixed_on_the_stack(void)
 {
 	int ret;
 	int err = 0;
-	struct arg_t args[] = {
-		{ T_INT,    (union value_t)1 },
-		{ T_FLOAT,  (union value_t)1.f },
-		{ T_LONG,   (union value_t)2L },
-		{ T_DOUBLE, (union value_t)2. },
-		{ T_INT,    (union value_t)3 },
-		{ T_FLOAT,  (union value_t)3.f },
-		{ T_LONG,   (union value_t)4L },
-		{ T_DOUBLE, (union value_t)4. },
-		{ T_INT,    (union value_t)5 },
-		{ T_FLOAT,  (union value_t)5.f },
-		{ T_LONG,   (union value_t)6L },
-		{ T_DOUBLE, (union value_t)6. },
-		{ T_INT,    (union value_t)7 },
-		{ T_FLOAT,  (union value_t)7.f },
-		{ T_LONG,   (union value_t)8L },
-		{ T_DOUBLE, (union value_t)8. },
-		{ T_INT,    (union value_t)9 },
-		{ T_FLOAT,  (union value_t)9.f },
-		{ T_LONG,   (union value_t)10L },
-		{ T_DOUBLE, (union value_t)10. },
-		{ T_INT,    (union value_t)11 },
-		{ T_FLOAT,  (union value_t)11.f },
-		{ T_LONG,   (union value_t)12L },
-		{ T_DOUBLE, (union value_t)12. },
-		{ T_INT,    (union value_t)13 },
-		{ T_FLOAT,  (union value_t)13.f },
-		{ T_LONG,   (union value_t)14L },
-		{ T_DOUBLE, (union value_t)14. },
-		{ T_INT,    (union value_t)15 },
-		{ T_FLOAT,  (union value_t)15.f },
-		{ T_LONG,   (union value_t)16L },
-		{ T_DOUBLE, (union value_t)16. }
+	arg_t args[] = {
+		{ T_INT,    (value_t)1 },
+		{ T_FLOAT,  (value_t)1.f },
+		{ T_LONG,   (value_t)2L },
+		{ T_DOUBLE, (value_t)2. },
+		{ T_INT,    (value_t)3 },
+		{ T_FLOAT,  (value_t)3.f },
+		{ T_LONG,   (value_t)4L },
+		{ T_DOUBLE, (value_t)4. },
+		{ T_INT,    (value_t)5 },
+		{ T_FLOAT,  (value_t)5.f },
+		{ T_LONG,   (value_t)6L },
+		{ T_DOUBLE, (value_t)6. },
+		{ T_INT,    (value_t)7 },
+		{ T_FLOAT,  (value_t)7.f },
+		{ T_LONG,   (value_t)8L },
+		{ T_DOUBLE, (value_t)8. },
+		{ T_INT,    (value_t)9 },
+		{ T_FLOAT,  (value_t)9.f },
+		{ T_LONG,   (value_t)10L },
+		{ T_DOUBLE, (value_t)10. },
+		{ T_INT,    (value_t)11 },
+		{ T_FLOAT,  (value_t)11.f },
+		{ T_LONG,   (value_t)12L },
+		{ T_DOUBLE, (value_t)12. },
+		{ T_INT,    (value_t)13 },
+		{ T_FLOAT,  (value_t)13.f },
+		{ T_LONG,   (value_t)14L },
+		{ T_DOUBLE, (value_t)14. },
+		{ T_INT,    (value_t)15 },
+		{ T_FLOAT,  (value_t)15.f },
+		{ T_LONG,   (value_t)16L },
+		{ T_DOUBLE, (value_t)16. }
 	};
 
 	ret = applyi(sum_mixed_on_the_stack, args, 32);

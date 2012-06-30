@@ -20,40 +20,31 @@ enum type_t {
 	T_DOUBLE = 5
 };
 
-
-/* This union lets us treat floats and doubles in a uniform fashion.
- * This is needed since x86-64 passes both floats and doubles
- * in the same registers (xmm0-xmm7) */
-union sse_t {
-	float   f;
-	double  d;
-};
-
 /*  this will handle parameters that are passed on the
  *  stack... */
-union value_t {
+typedef union u_value {
 	/* we'll use longs to hold ints for sanity's sake */
 	long l;
 	int i;
 	float f;
 	double d;
 	void *p;
-};
+} value_t;
 
-struct arg_t {
+typedef struct s_arg {
 	int type;
-	union value_t value;
-};
+	value_t value;
+} arg_t;
 
-void apply(const void *func, const struct arg_t *args, size_t size);
+void apply(const void *func, const arg_t *args, size_t size);
 
-float applyf(const void *func, const struct arg_t *args, size_t size);
+float applyf(const void *func, const arg_t *args, size_t size);
 
-double applyd(const void *func, const struct arg_t *args, size_t size);
+double applyd(const void *func, const arg_t *args, size_t size);
 
-long applyl(const void *func, const struct arg_t *args, size_t size);
+long applyl(const void *func, const arg_t *args, size_t size);
 
-int applyi(const void *func, const struct arg_t *args, size_t size);
+int applyi(const void *func, const arg_t *args, size_t size);
 
 #ifdef __cplusplus
 };

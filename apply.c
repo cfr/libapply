@@ -22,7 +22,6 @@
 #define GPR_REGISTERS 6
 #define SSE_REGISTERS 8
 
-
 /* This function actually does the C call.
 * Steps:
 * - Determine the number of stack args
@@ -33,7 +32,6 @@
 * - Copy the return value from the stack onto
 *   the passed pointer
 */
-
 static void ccall(
 		void *result,
 		const enum type_t retval, /* Return type */
@@ -56,10 +54,10 @@ static void ccall(
 
 	/* these args get passed directly in the registers */
 	long gpr_args[GPR_REGISTERS];
-	union sse_t sse_args[SSE_REGISTERS];
+	value_t sse_args[SSE_REGISTERS];
 
 	/* these args get passed on the stack */
-	union value_t stack_args[size - GPR_REGISTERS];
+	value_t stack_args[size - GPR_REGISTERS];
 
 	for (i = 0; i < size; i++) {
 		switch (args[i].type) {
@@ -197,19 +195,19 @@ static void ccall(
 #endif
 
 
-void apply(const void *func, const struct arg_t *args, size_t size)
+void apply(const void *func, const arg_t *args, size_t size)
 {
 	ccall(NULL, T_VOID, func, args, size);
 }
 
-float applyf(const void *func, const struct arg_t *args, size_t size)
+float applyf(const void *func, const arg_t *args, size_t size)
 {
 	float result;
 	ccall(&result, T_FLOAT, func, args, size);
 	return result;
 }
 
-double applyd(const void *func, const struct arg_t *args, size_t size)
+double applyd(const void *func, const arg_t *args, size_t size)
 {
 	double result;
 	ccall(&result, T_DOUBLE, func, args, size);
@@ -217,7 +215,7 @@ double applyd(const void *func, const struct arg_t *args, size_t size)
 }
 
 
-long applyl(const void *func, const struct arg_t *args, size_t size)
+long applyl(const void *func, const arg_t *args, size_t size)
 {
 	long result;
 	ccall(&result, T_LONG, func, args, size);
@@ -225,7 +223,7 @@ long applyl(const void *func, const struct arg_t *args, size_t size)
 }
 
 
-int applyi(const void *func, const struct arg_t *args, size_t size)
+int applyi(const void *func, const arg_t *args, size_t size)
 {
 	long result;
 	ccall(&result, T_INT, func, args, size);
