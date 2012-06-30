@@ -1,5 +1,6 @@
+/unittest
+/lib
 *.so
 *.dylib
 *.dSYM
-/unittest
 *.swp
