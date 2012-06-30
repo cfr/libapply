@@ -15,13 +15,14 @@ float sum5f(float a, float b, float c, float d, float e)
 
 
 float verify10f(
+		float ret,
 		float f1, float f2, float f3, float f4, float f5,
 		float f6, float f7, float f8, float f9, float fa)
 {
 	if (f1 != fa || f2 != f9 || f3 != f8 || f4 != f7 || f5 != f6)
-		return 0.f;
+		return -ret;
 	else
-		return 42.f;
+		return ret;
 }
 
 
@@ -101,6 +102,7 @@ int test_verify_many_floats(void)
 	float ret;
 	int err = 0;
 	struct arg_t args[] = {
+		{ T_FLOAT, (union value_t)42.0f },
 		{ T_FLOAT, (union value_t)1.0f },
 		{ T_FLOAT, (union value_t)10.f },
 		{ T_FLOAT, (union value_t)100.f },
@@ -113,7 +115,7 @@ int test_verify_many_floats(void)
 		{ T_FLOAT, (union value_t)1.0f }
 	};
 
-	ret = applyf(verify10f, args, 10);
+	ret = applyf(verify10f, args, 11);
 	if (42.f == ret)
 		printf("ok\ttest_verify_many_floats()\n");
 	else {

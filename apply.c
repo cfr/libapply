@@ -48,7 +48,7 @@ static void ccall(
 	long long_result;
 
 	/* temporary vars */
-	size_t i = 0;
+	size_t i, idx;
 	int gpr_count = 0;
 	int sse_count = 0;
 	int stack_count = 0;
@@ -59,7 +59,7 @@ static void ccall(
 	union sse_t sse_args[SSE_REGISTERS];
 
 	/* these args get passed on the stack */
-	union value_t stack_args[size-GPR_REGISTERS];
+	union value_t stack_args[size - GPR_REGISTERS];
 
 	for (i = 0; i < size; i++) {
 		switch (args[i].type) {
@@ -113,8 +113,9 @@ static void ccall(
 			: "%rsp" /* %rsp is clobbered */);
 	}
 	/* process stack args in reverse order (see the amd64 ABI documentation) */
-	for (i = stack_count-1; i > -1; --i) {
-		x64("pushq  %0" : : "m"(stack_args[i]));
+	for (i = 0; i < stack_count; i++) {
+		idx = stack_count - i - 1;
+		x64("pushq %0" : : "m"(stack_args[idx].l));
 	}
 
 	/* mov long arguments into appropriate registers */
