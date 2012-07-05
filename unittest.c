@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <apply.h>
+#include <stdarg.h>
 
 
 #define len(x) (sizeof(x)/sizeof(x[0]))
@@ -8,6 +9,22 @@
 int sumi3(int a, int b, int c)
 {
 	return a + b + c;
+}
+
+
+int sumv(int a, int last, ...)
+{
+	int sum = a;
+	va_list arg;
+
+	va_start(arg, last);
+	while (!last) {
+		sum += va_arg(arg, int);
+		last = va_arg(arg, int);
+	}
+	va_end(arg);
+
+	return sum;
 }
 
 
@@ -207,6 +224,35 @@ int test_mixed_on_the_stack(void)
 }
 
 
+int test_sum_varargs(void)
+{
+	int ret;
+	int err = 0;
+
+	arg_t args[] = {
+		{ T_INT, (value_t)1 },
+		{ T_INT, (value_t)0 },
+		{ T_INT, (value_t)10 },
+		{ T_INT, (value_t)0 },
+		{ T_INT, (value_t)100 },
+		{ T_INT, (value_t)0 },
+		{ T_INT, (value_t)1000 },
+		{ T_INT, (value_t)0 },
+		{ T_INT, (value_t)10000 },
+		{ T_INT, (value_t)1 }
+	};
+	ret = applyi(sumv, args, len(args));
+	if (11111 == ret)
+		printf("ok\ttest_sum_varargs\n");
+	else {
+		printf("fail\ttest_sum_varargs got %d instead of 111\n", ret);
+		err = 1;
+	}
+
+	return err;
+}
+
+
 int main(int argc, char **argv)
 {
 	int err = 0;
@@ -216,6 +262,7 @@ int main(int argc, char **argv)
 	err += test_sum_of_doubles();
 	err += test_verify_many_floats();
 	err += test_mixed_on_the_stack();
+	err += test_sum_varargs();
 
 	return err;
 }
