@@ -17,6 +17,12 @@ float sum5f(float a, float b, float c, float d, float e)
 }
 
 
+double sum5d(double a, double b, double c, double d, double e)
+{
+	return a + b + c + d + e;
+}
+
+
 float verify10f(
 		float ret,
 		float f1, float f2, float f3, float f4, float f5,
@@ -90,6 +96,29 @@ int test_sum_of_floats(void)
 		printf("ok\ttest_sum_of_floats()\n");
 	else {
 		printf("fail\tgot %f instead of 0.11111\n", ret);
+		err = 1;
+	}
+
+	return err;
+}
+
+
+int test_sum_of_doubles(void)
+{
+	double ret;
+	int err = 0;
+	arg_t args[] = {
+		{ T_DOUBLE, (value_t)1.0 },
+		{ T_DOUBLE, (value_t)10. },
+		{ T_DOUBLE, (value_t)100. },
+		{ T_DOUBLE, (value_t)1000. },
+		{ T_DOUBLE, (value_t)10000. }
+	};
+	ret = applyd(sum5d, args, len(args));
+	if (11111. == ret)
+		printf("ok\ttest_sum_of_doubles()\n");
+	else {
+		printf("fail\tgot %g instead of 0.11111\n", ret);
 		err = 1;
 	}
 
@@ -184,6 +213,7 @@ int main(int argc, char **argv)
 
 	err += test_sum_of_ints();
 	err += test_sum_of_floats();
+	err += test_sum_of_doubles();
 	err += test_verify_many_floats();
 	err += test_mixed_on_the_stack();
 
