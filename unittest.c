@@ -85,7 +85,7 @@ int test_sum_of_floats(void)
 		{ T_FLOAT, (value_t)10000.f }
 	};
 
-	ret = applyf(sum5f, args, 5);
+	ret = applyf(sum5f, args, len(args));
 	if (11111.f == ret)
 		printf("ok\ttest_sum_of_floats()\n");
 	else {
@@ -115,7 +115,7 @@ int test_verify_many_floats(void)
 		{ T_FLOAT, (value_t)1.0f }
 	};
 
-	ret = applyf(verify10f, args, 11);
+	ret = applyf(verify10f, args, len(args));
 	if (42.f == ret)
 		printf("ok\ttest_verify_many_floats()\n");
 	else {
@@ -166,8 +166,8 @@ int test_mixed_on_the_stack(void)
 		{ T_DOUBLE, (value_t)16. }
 	};
 
-	ret = applyi(sum_mixed_on_the_stack, args, 32);
-	if (16 == ret)
+	ret = applyi(sum_mixed_on_the_stack, args, len(args));
+	if (len(args)/2 == ret)
 		printf("ok\ttest_mixed_on_the_stack()\n");
 	else {
 		printf("fail\tgot %d instead of 16\n", ret);
