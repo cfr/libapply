@@ -35,7 +35,7 @@ typedef struct s_arg {
 	value_t value;
 } arg_t;
 
-void apply(const void *func, const arg_t *args, size_t size);
+void *apply(const void *func, const arg_t *args, size_t size);
 
 float applyf(const void *func, const arg_t *args, size_t size);
 

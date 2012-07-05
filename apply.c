@@ -184,8 +184,6 @@ static void ccall(
 	case T_DOUBLE:
 		*(double *)result = double_result;
 		break;
-	case T_VOID:
-		break;
 	default:
 		assert(0);
 		break;
@@ -195,9 +193,11 @@ static void ccall(
 #endif
 
 
-void apply(const void *func, const arg_t *args, size_t size)
+void *apply(const void *func, const arg_t *args, size_t size)
 {
-	ccall(NULL, T_VOID, func, args, size);
+	void *result;
+	ccall(&result, T_PTR, func, args, size);
+	return result;
 }
 
 float applyf(const void *func, const arg_t *args, size_t size)
