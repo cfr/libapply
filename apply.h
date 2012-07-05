@@ -11,14 +11,13 @@ extern "C" {
 #endif
 
 /* function return types */
-enum type_t {
-	T_VOID = 0,
-	T_PTR = 1,
-	T_INT = 2,
-	T_LONG = 3,
-	T_FLOAT = 4,
-	T_DOUBLE = 5
-};
+typedef enum e_type {
+	T_PTR = 0,
+	T_INT,
+	T_LONG,
+	T_FLOAT,
+	T_DOUBLE
+} type_t;
 
 /*  this will handle parameters that are passed on the
  *  stack... */

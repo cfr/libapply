@@ -34,7 +34,7 @@
 */
 static void ccall(
 		void *result,
-		const enum type_t retval, /* Return type */
+		const type_t retval, /* Return type */
 		const void *func, /* Function to call */
 		const arg_t *args, /* Arguments */
 		const size_t size)
