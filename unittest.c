@@ -2,7 +2,10 @@
 #include <apply.h>
 
 
-int sumi(int a, int b, int c)
+#define len(x) (sizeof(x)/sizeof(x[0]))
+
+
+int sumi3(int a, int b, int c)
 {
 	return a + b + c;
 }
@@ -48,9 +51,6 @@ int sum_mixed_on_the_stack(
 }
 
 
-
-
-
 int test_sum_of_ints(void)
 {
 	int ret;
@@ -61,7 +61,7 @@ int test_sum_of_ints(void)
 		{ T_INT, (value_t)100 }
 	};
 
-	ret = applyi(sumi, args, 3);
+	ret = applyi(sumi3, args, len(args));
 	if (111 == ret)
 		printf("ok\ttest_sum_of_ints()\n");
 	else {
